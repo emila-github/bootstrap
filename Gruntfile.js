@@ -399,7 +399,8 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   // Docs HTML validation task
-  grunt.registerTask('validate-html', ['jekyll', 'validation']);
+  // grunt.registerTask('validate-html', ['jekyll', 'validation']);
+  grunt.registerTask('validate-html', []);
 
   var runSubset = function (subset) {
     return !process.env.TWBS_TEST || process.env.TWBS_TEST === subset;
