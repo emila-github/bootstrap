@@ -16,14 +16,17 @@
 </title>
 
 <!-- Bootstrap core CSS -->
-<link href="../dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="../dist/css/bootstrap.css" rel="stylesheet">
+
 
 
 <!-- Documentation extras -->
-<link href="../assets/css/docs.min.css" rel="stylesheet">
+
+<link href="../assets/css/src/docs.css" rel="stylesheet">
+<link href="../assets/css/src/pygments-manni.css" rel="stylesheet">
+
 <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
 <script src="../assets/js/ie-emulation-modes-warning.js"></script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -53,7 +56,7 @@
     <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
   <div class="container">
     <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -109,6 +112,7 @@
 <!--[if lt IE 9]>
   <style>
     .bs-customizer,
+    .bs-customizer-import,
     .bs-docs-sidebar {
       display: none;
     }
@@ -120,6 +124,17 @@
 <![endif]-->
 
 <!-- Customizer form -->
+
+<div class="bs-docs-section bs-customizer-import">
+  <div id="import-drop-target" class="bs-dropzone">
+    <h2>✍</h2>
+    <p class="lead">Have an existing configuration? Upload your <code>config.json</code> to import it.</p>
+    <p>Drag and drop here, or <label id="import-manual-trigger" class="btn-link">manually upload<input type="file" id="import-file-select" class="hidden"></label>.</p>
+    <hr>
+    <p><strong>Don't have one?</strong> That's okay—just start customizing the fields below.</p>
+  </div>
+</div><!-- /import -->
+
 <form class="bs-customizer" role="form">
   <div class="bs-docs-section" id="less-section">
     <button class="btn btn-default toggle" type="button">Toggle all</button>
@@ -458,24 +473,28 @@
 <p>Gray and brand colors for use across Bootstrap.</p>
 <div class="row">
   <div class="bs-customizer-input">
+    <label for="input-@gray-base">@gray-base</label>
+    <input id="input-@gray-base" type="text" value="#000" data-var="@gray-base" class="form-control"/>
+  </div>
+  <div class="bs-customizer-input">
     <label for="input-@gray-darker">@gray-darker</label>
-    <input id="input-@gray-darker" type="text" value="lighten(#000, 13.5%)" data-var="@gray-darker" class="form-control"/>
+    <input id="input-@gray-darker" type="text" value="lighten(@gray-base, 13.5%)" data-var="@gray-darker" class="form-control"/>
   </div>
   <div class="bs-customizer-input">
     <label for="input-@gray-dark">@gray-dark</label>
-    <input id="input-@gray-dark" type="text" value="lighten(#000, 20%)" data-var="@gray-dark" class="form-control"/>
+    <input id="input-@gray-dark" type="text" value="lighten(@gray-base, 20%)" data-var="@gray-dark" class="form-control"/>
   </div>
   <div class="bs-customizer-input">
     <label for="input-@gray">@gray</label>
-    <input id="input-@gray" type="text" value="lighten(#000, 33.5%)" data-var="@gray" class="form-control"/>
+    <input id="input-@gray" type="text" value="lighten(@gray-base, 33.5%)" data-var="@gray" class="form-control"/>
   </div>
   <div class="bs-customizer-input">
     <label for="input-@gray-light">@gray-light</label>
-    <input id="input-@gray-light" type="text" value="lighten(#000, 46.7%)" data-var="@gray-light" class="form-control"/>
+    <input id="input-@gray-light" type="text" value="lighten(@gray-base, 46.7%)" data-var="@gray-light" class="form-control"/>
   </div>
   <div class="bs-customizer-input">
     <label for="input-@gray-lighter">@gray-lighter</label>
-    <input id="input-@gray-lighter" type="text" value="lighten(#000, 93.5%)" data-var="@gray-lighter" class="form-control"/>
+    <input id="input-@gray-lighter" type="text" value="lighten(@gray-base, 93.5%)" data-var="@gray-lighter" class="form-control"/>
   </div>
   <div class="bs-customizer-input">
     <label for="input-@brand-primary">@brand-primary</label>
@@ -858,7 +877,7 @@
   </div>
   <div class="bs-customizer-input">
     <label for="input-@input-color-placeholder">@input-color-placeholder</label>
-    <input id="input-@input-color-placeholder" type="text" value="@gray-light" data-var="@input-color-placeholder" class="form-control"/>
+    <input id="input-@input-color-placeholder" type="text" value="#999" data-var="@input-color-placeholder" class="form-control"/>
     <p class="help-block">Placeholder text color</p>
   </div>
   <div class="bs-customizer-input">
@@ -1180,7 +1199,7 @@
   </div>
   <div class="bs-customizer-input">
     <label for="input-@navbar-inverse-color">@navbar-inverse-color</label>
-    <input id="input-@navbar-inverse-color" type="text" value="@gray-light" data-var="@navbar-inverse-color" class="form-control"/>
+    <input id="input-@navbar-inverse-color" type="text" value="lighten(@gray-light, 12%)" data-var="@navbar-inverse-color" class="form-control"/>
   </div>
   <div class="bs-customizer-input">
     <label for="input-@navbar-inverse-bg">@navbar-inverse-bg</label>
@@ -2208,8 +2227,6 @@
 <!-- NOTE: DO NOT EDIT THE PRECEDING SECTION DIRECTLY! It is autogenerated via the `build-customizer-html` Grunt task using the customizer-variables.jade template.-->
   </div>
 
-
-
   <div class="bs-docs-section">
     <h1 id="download" class="page-header">Download</h1>
 
@@ -2227,6 +2244,7 @@
               
                 
 <!-- NOTE: DO NOT EDIT THE FOLLOWING SECTION DIRECTLY! It is autogenerated via the `build-customizer-html` Grunt task using the customizer-nav.jade template.-->
+<li><a href="#import">Import</a></li>
 <li><a href="#less">Less components</a></li>
 <li><a href="#plugins">jQuery plugins</a></li>
 <li><a href="#less-variables">Less variables</a>
@@ -2333,11 +2351,19 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="../dist/js/bootstrap.min.js"></script>
-<script src="../assets/js/docs.min.js"></script>
+
+<script src="../dist/js/bootstrap.js"></script>
+
+
+<script src="../assets/js/vendor/holder.js"></script>
+<script src="../assets/js/vendor/ZeroClipboard.min.js"></script>
+<script src="../assets/js/src/application.js"></script>
+
 
 <script src="../assets/js/customize.min.js"></script>
 
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
 
 
 <script>
